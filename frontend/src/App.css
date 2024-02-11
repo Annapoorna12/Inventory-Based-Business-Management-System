@@ -72,12 +72,12 @@ nav{
   padding: 1rem;
   font-size: 19px;
   text-decoration: none;
-  color: white;
+  color: #070700;
 }
 .menu a:hover{
-  color: white;
+  color: #070700;
   padding-bottom: 0.5rem;
-  border-bottom: 3px solid white;
+  border-bottom: 3px solid #070700;
 }
 .intro{
   font-family: arial;
@@ -86,6 +86,6 @@ nav{
   margin-left: 90px;
   width: 450px;
   height: 200px;
-  color: white;
+  color: #070700;
   word-spacing: 5%;
 }
