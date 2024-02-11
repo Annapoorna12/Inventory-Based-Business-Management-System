@@ -1,6 +1,7 @@
 import React from 'react'
+import logo from '../../assets/logo2-re.png'
 import 
-{BsCart3, BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, 
+{ BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, 
   BsListCheck, BsMenuButtonWideFill, BsFillGearFill}
  from 'react-icons/bs'
 
@@ -9,7 +10,7 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
     <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive": ""}>
         <div className='sidebar-title'>
             <div className='sidebar-brand'>
-                <BsCart3  className='icon_header'/> SHOP
+                <img className='logo' src={logo} alt="" style={{ marginLeft: 0 }} />
             </div>
             <span className='icon close_icon' onClick={OpenSidebar}>X</span>
         </div>
