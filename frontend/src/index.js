@@ -6,7 +6,7 @@ import App from './App';
 import Login from './components/login/login'
 import reportWebVitals from './reportWebVitals';
 import Signup from './components/signup/signup';
-import All from './components/dashboard/all.jsx'
+// import All from './components/dashboard/all.jsx'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,7 +15,7 @@ root.render(
     <Route path='/' element={<App />}></Route>
     <Route path='/login' element={<Login />}></Route>
     <Route path='/signup' element={<Signup />}></Route>
-    <Route path='/dashboard' element={<All />}></Route>
+    {/* <Route path='/dashboard' element={<All />}></Route> */}
   </Routes>
   </BrowserRouter>
 );
