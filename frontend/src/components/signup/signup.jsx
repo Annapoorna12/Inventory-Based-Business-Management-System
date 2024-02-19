@@ -1,6 +1,7 @@
 import React,{ useState } from 'react'
 import { Link } from 'react-router-dom'
 import Validation from './signupvalidation';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Signup() {
 
