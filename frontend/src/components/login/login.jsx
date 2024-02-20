@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Validation from './loginvalidation'
-import './login.css'
+import 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import './login.css'
 
 function Login() {
     const [values,setValues] = useState({
@@ -44,9 +46,9 @@ function Login() {
                         onChange={handleInput} className='form-control rounded-0'/>
                         {errors.password && <span className='text-danger'>{errors.password}</span>}
                     </div>
-                    {/* <button type='submit' className='btn btn-success w-100 rounded-0'>Login</button>
-                    <Link to="/All" className='btn border w-100 bg-light rounded-0 text-decoration-none'>Login</Link> */}
-                    <button type='submit' onClick={() => { window.location.href = "/All" }} className='btn border w-100 bg-light rounded-0 text-decoration-none'>Login</button>
+                    {/* <button type='submit' className='btn btn-success w-100 rounded-0'>Login</button> */}
+                    <Link to="/All" className='btn btn-success border w-100 rounded-0 text-decoration-none'>Login</Link>
+                    {/* <button type='submit' onClick={() => { window.location.href = "/All" }} className='btn border w-100 bg-light rounded-0 text-decoration-none'>Login</button> */}
 
                     <p>You are agreeing to our terms and poicies</p>
                     <Link to="/signup" className='btn border w-100 bg-light rounded-0 text-decoration-none'>Create Account</Link>
