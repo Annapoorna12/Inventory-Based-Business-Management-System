@@ -47,7 +47,7 @@ function Login() {
                         {errors.password && <span className='text-danger'>{errors.password}</span>}
                     </div>
                     {/* <button type='submit' className='btn btn-success w-100 rounded-0'>Login</button> */}
-                    <Link to="/All" className='btn btn-success border w-100 rounded-0 text-decoration-none'>Login</Link>
+                    <Link to="/All" className='btn btn-dark border w-100 rounded-0 text-decoration-none'>Login</Link>
                     {/* <button type='submit' onClick={() => { window.location.href = "/All" }} className='btn border w-100 bg-light rounded-0 text-decoration-none'>Login</button> */}
 
                     <p>You are agreeing to our terms and poicies</p>

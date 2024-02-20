@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: black;
+  color: white;
 }
 
 .App-link {
@@ -39,7 +39,7 @@
 
 body{
   height: 100%;
-  background-image: url('./assets/brick2 1.png');
+  background-image: url('./assets/brick2 1 1.png');
   background-size: cover;
   background-repeat: no repeat;
   background-position: center center;
@@ -49,9 +49,10 @@ body{
 }
 
 img{
-  height: 140px;
+  height: 70px;
   width: 185px;
   margin-left: 25px;
+  margin-top: 20px;
 }
 nav{
   align-items: inline;
@@ -72,12 +73,12 @@ nav{
   padding: 1rem;
   font-size: 19px;
   text-decoration: none;
-  color: black;
+  color: white;
 }
 .menu a:hover{
-  color: black;
+  color: white;
   padding-bottom: 0.5rem;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid white;
 }
 .intro{
   font-family: arial;
@@ -86,6 +87,6 @@ nav{
   margin-left: 90px;
   width: 450px;
   height: 200px;
-  color: black;
+  color: white;
   word-spacing: 5%;
 }

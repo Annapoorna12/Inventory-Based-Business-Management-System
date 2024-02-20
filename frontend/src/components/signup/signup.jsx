@@ -44,7 +44,7 @@ function Signup() {
                         onChange={handleInput} className='form-control rounded-0'/>
                         {errors.password && <span className='text-danger'>{errors.password}</span>}
                     </div>
-                    <button type='submit' className='btn btn-success w-100 rounded-0'>Signup</button>
+                    <button type='submit' className='btn btn-dark w-100 rounded-0'>Signup</button>
                     <p>You are agreeing to our terms and poicies</p>
                     <Link to="/Login" className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>Login</Link>
                 </form>
