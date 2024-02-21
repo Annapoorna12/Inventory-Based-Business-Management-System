@@ -8,6 +8,8 @@ import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
 import Form1 from "../form1";
 import { useNavigate } from 'react-router-dom';
+import {useState, useEffect} from "react"
+import axios from "axios";
 
 const Team = () => {
   const theme = useTheme();
@@ -20,57 +22,93 @@ const Team = () => {
       flex: 1,
       cellClassName: "name-column--cell",
     },
+    // {
+    //   field: "age",
+    //   headerName: "Age",
+    //   type: "number",
+    //   headerAlign: "left",
+    //   align: "left",
+    // },
     {
-      field: "age",
-      headerName: "Age",
-      type: "number",
-      headerAlign: "left",
-      align: "left",
+      field: "address",
+      headerName: "Address",
+      flex: 1,
     },
     {
       field: "phone",
       headerName: "Phone Number",
       flex: 1,
     },
-    {
-      field: "email",
-      headerName: "Email",
-      flex: 1,
-    },
-    {
-      field: "accessLevel",
-      headerName: "Designation",
-      flex: 1,
-      renderCell: ({ row: { access } }) => {
-        return (
-          <Box
-            width="60%"
-            m="0 auto"
-            p="5px"
-            display="flex"
-            justifyContent="center"
-            backgroundColor={
-              access === "admin"
-                ? colors.greenAccent[600]
-                : access === "manager"
-                ? colors.greenAccent[700]
-                : colors.greenAccent[700]
-            }
-            borderRadius="4px"
-          >
-            {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
-            {access === "manager" && <SecurityOutlinedIcon />}
-            {access === "user" && <LockOpenOutlinedIcon />}
-            <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
-              {access}
-            </Typography>
-          </Box>
-        );
-      },
-    },
+   
+    // {
+    //   field: "email",
+    //   headerName: "Email",
+    //   flex: 1,
+    // },
+    // {
+    //   field: "accessLevel",
+    //   headerName: "Designation",
+    //   flex: 1,
+    //   renderCell: ({ row: { access } }) => {
+    //     return (
+    //       <Box
+    //         width="60%"
+    //         m="0 auto"
+    //         p="5px"
+    //         display="flex"
+    //         justifyContent="center"
+    //         backgroundColor={
+    //           access === "admin"
+    //             ? colors.greenAccent[600]
+    //             : access === "manager"
+    //             ? colors.greenAccent[700]
+    //             : colors.greenAccent[700]
+    //         }
+    //         borderRadius="4px"
+    //       >
+    //         {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
+    //         {access === "manager" && <SecurityOutlinedIcon />}
+    //         {access === "user" && <LockOpenOutlinedIcon />}
+    //         <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
+    //           {access}
+    //         </Typography>
+    //       </Box>
+    //     );
+    //   },
+    // },
   ];
 
   const navigate = useNavigate();
+  const [employeeData, setEmployeeData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // try {
+      //   // Make an Axios GET request to fetch employee data from the backend
+      //   const response = await axios.get('http://127.0.0.1:8000/employee/');
+      //   // Assuming your backend returns an array of employee data
+      //   setEmployeeData(response.data);
+      // } catch (error) {
+      //   console.error('Error fetching employee data:', error);
+      // }
+      axios({
+        method: "GET",
+        url:"/employee/",
+      }).then((response)=>{
+        const data = response.data
+        setEmployeeData(data)
+      }).catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+          }
+      })
+    };
+
+    // Call the fetchData function when the component mounts
+    fetchData();
+  }, []);
   return (
     <Box m="20px">
       {/* <Header title="EMPLOYEE" subtitle="Employee Details" /> */}
@@ -119,7 +157,7 @@ const Team = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
+        <DataGrid checkboxSelection rows={employeeData} columns={columns} />
       </Box>
     </Box>
   );

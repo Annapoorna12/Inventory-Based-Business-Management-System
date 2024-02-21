@@ -3,12 +3,33 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
+import { useState } from 'react'; 
+import axios from 'axios';
 
 const Form2 = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
+  const [customerData, setCustomerData] = useState([]);
+
   const handleFormSubmit = (values) => {
     console.log(values);
+    axios({
+      method: "POST",
+      url:"/customer/",
+      data:{
+        name: values.firstName,
+        address: values.address1,
+        phone: values.contact
+      },
+    }).then((response)=>{
+      const newCustomer=response.data;
+      setCustomerData([customerData,newCustomer]);
+      console.log(response.data)
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response);
+        }
+    })
   };
 
   return (
@@ -50,7 +71,7 @@ const Form2 = () => {
                 helperText={touched.firstName && errors.firstName}
                 sx={{ gridColumn: "span 2" }}
               />
-              <TextField
+              {/* <TextField
                 fullWidth
                 variant="filled"
                 type="number"
@@ -62,8 +83,8 @@ const Form2 = () => {
                 error={!!touched.age && !!errors.age}
                 // helperText={touched.lastName && errors.lastName}
                 sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
+              /> */}
+              {/* <TextField
                 fullWidth
                 variant="filled"
                 type="text"
@@ -74,6 +95,19 @@ const Form2 = () => {
                 name="email"
                 error={!!touched.email && !!errors.email}
                 helperText={touched.email && errors.email}
+                sx={{ gridColumn: "span 4" }}
+              /> */}
+              <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Address"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.address1}
+                name="address1"
+                error={!!touched.address1 && !!errors.address1}
+                helperText={touched.address1 && errors.address1}
                 sx={{ gridColumn: "span 4" }}
               />
               <TextField
@@ -89,19 +123,7 @@ const Form2 = () => {
                 helperText={touched.contact && errors.contact}
                 sx={{ gridColumn: "span 4" }}
               />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Address 1"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address1}
-                name="address1"
-                error={!!touched.address1 && !!errors.address1}
-                helperText={touched.address1 && errors.address1}
-                sx={{ gridColumn: "span 4" }}
-              />
+          
               {/* <TextField
                 fullWidth
                 variant="filled"

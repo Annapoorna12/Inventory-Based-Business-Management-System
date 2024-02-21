@@ -1,15 +1,38 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
+import axios from 'axios';
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
+import { useState } from 'react'; 
+
 
 const Form1 = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
+  const [employeeData, setEmployeeData] = useState([]);
+
   const handleFormSubmit = (values) => {
     console.log(values);
-  };
+      axios({
+        method: "POST",
+        url:"/employee/",
+        data:{
+          name: values.firstName,
+          address: values.address1,
+          phone: values.contact
+        },
+      }).then((response)=>{
+        const newEmployee=response.data;
+        setEmployeeData([employeeData,newEmployee]);
+        console.log(response.data)
+      }).catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          }
+      })
+    };
+
 
   return (
     <Box m="20px">
@@ -50,7 +73,7 @@ const Form1 = () => {
                 helperText={touched.firstName && errors.firstName}
                 sx={{ gridColumn: "span 2" }}
               />
-              <TextField
+              {/* <TextField
                 fullWidth
                 variant="filled"
                 type="number"
@@ -62,8 +85,8 @@ const Form1 = () => {
                 error={!!touched.age && !!errors.age}
                 // helperText={touched.lastName && errors.lastName}
                 sx={{ gridColumn: "span 2" }}
-              />
-              <TextField
+              /> */}
+              {/* <TextField
                 fullWidth
                 variant="filled"
                 type="text"
@@ -75,8 +98,21 @@ const Form1 = () => {
                 error={!!touched.email && !!errors.email}
                 helperText={touched.email && errors.email}
                 sx={{ gridColumn: "span 4" }}
-              />
+              /> */}
               <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Address "
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.address1}
+                name="address1"
+                error={!!touched.address1 && !!errors.address1}
+                helperText={touched.address1 && errors.address1}
+                sx={{ gridColumn: "span 4" }}
+              /> 
+             <TextField
                 fullWidth
                 variant="filled"
                 type="text"
@@ -89,20 +125,8 @@ const Form1 = () => {
                 helperText={touched.contact && errors.contact}
                 sx={{ gridColumn: "span 4" }}
               />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Address 1"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address1}
-                name="address1"
-                error={!!touched.address1 && !!errors.address1}
-                helperText={touched.address1 && errors.address1}
-                sx={{ gridColumn: "span 4" }}
-              />
-              <TextField
+              
+              {/* <TextField
                 fullWidth
                 variant="filled"
                 type="text"
@@ -114,7 +138,7 @@ const Form1 = () => {
                 error={!!touched.designation && !!errors.designation}
                 helperText={touched.designation && errors.designation}
                 sx={{ gridColumn: "span 4" }}
-              />
+              /> */}
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
@@ -134,22 +158,24 @@ const phoneRegExp =
 const checkoutSchema = yup.object().shape({
   firstName: yup.string().required("required"),
 //   lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
+  // email: yup.string().email("invalid email").required("required"),
   contact: yup
     .string()
     .matches(phoneRegExp, "Phone number is not valid")
     .required("required"),
   address1: yup.string().required("required"),
-  designation: yup.string().required("required"),
+  // designation: yup.string().required("required"),
 });
 const initialValues = {
   firstName: "",
-//   lastName: "",
- age: 0,
-  email: "",
-  contact: "",
   address1: "",
-  designation: "",
+  contact: "",
+//   lastName: "",
+//  age: 0,
+  // email: "",
+ 
+  
+  // designation: "",
 };
 
 export default Form1;

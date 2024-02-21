@@ -17,8 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,re_path
 from django.views.generic import TemplateView
+from employee.views import employee,employee_detail
+from customer.views import customer,customer_detail
+from supplier.views import supplier,supplier_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("employee/", employee, name="employee"),
+    path("customer/", customer, name="customer"),
+    path("supplier/",supplier,name='supplier'),
     re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
 ]
