@@ -8,6 +8,8 @@ import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
 import Form from "../form";
 import { useNavigate } from 'react-router-dom';
+import {useState, useEffect} from "react"
+import axios from "axios";
 import Button from '@mui/material/Button'; // Import Button component from MUI
 
 const Products = () => {
@@ -78,7 +80,38 @@ const Products = () => {
   //   // Handle remove functionality
   //   console.log(`Remove product with id ${id}`);
   // };
+  const [productData, setProductData] = useState([]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      // try {
+      //   // Make an Axios GET request to fetch employee data from the backend
+      //   const response = await axios.get('http://127.0.0.1:8000/employee/');
+      //   // Assuming your backend returns an array of employee data
+      //   setEmployeeData(response.data);
+      // } catch (error) {
+      //   console.error('Error fetching employee data:', error);
+      // }
+      axios({
+        method: "GET",
+        url:"/product/",
+      }).then((response)=>{
+        const data = response.data
+        setProductData(data)
+
+      })
+  .catch((error) => {
+        if (error.response) {
+          console.log(error.response);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+          }
+      })
+    };
+
+    // Call the fetchData function when the component mounts
+    fetchData();
+  }, []);
   return (
     <Box m="20px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
