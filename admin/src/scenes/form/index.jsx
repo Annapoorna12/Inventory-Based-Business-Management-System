@@ -1,15 +1,52 @@
-import { Box, Button, TextField } from "@mui/material";
-import { Formik } from "formik";
+import { Box, Button, TextField, InputLabel, Input } from "@mui/material";
+import { Formik, Field } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
+import React,{useState} from 'react';
+import axios from 'axios';
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
+  
+  const [productData, setProductData] = useState([]);
+
+
+  // const handleFileChange = (e) => {
+  //   setProductData((prevData) => ({
+  //     ...prevData,
+  //     image: e.target.files[0],
+  //   }));
+  // };
 
   const handleFormSubmit = (values) => {
     console.log(values);
+    const formData = new FormData();
+    formData.append('name', values.productName);
+    formData.append('qty', values.productQty);
+    formData.append('price', values.productPrice);
+    formData.append('description', values.description);
+    // if(values.image){
+    formData.append('image', values.image);
+    // }
+    axios({
+      method:"POST",
+      url:"/product/",
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }).then((response)=>{
+      const newProduct=response.data;
+      setProductData([productData,newProduct]);
+      console.log(response.data)
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response);
+      }
+    })
   };
+
 
   return (
     <Box m="20px">
@@ -27,8 +64,9 @@ const Form = () => {
           handleBlur,
           handleChange,
           handleSubmit,
+          setFieldValue,
         }) => (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}  encType="multipart/form-data">
             <Box
               display="grid"
               gap="30px"
@@ -41,7 +79,7 @@ const Form = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="product Name"
+                label="Product Name"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.productName}
@@ -50,30 +88,30 @@ const Form = () => {
                 helperText={touched.productName && errors.productName}
                 sx={{ gridColumn: "span 2" }}
               />
-              {/* <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Quantity"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.lastName}
-                name="lastName"
-                error={!!touched.lastName && !!errors.lastName}
-                helperText={touched.lastName && errors.lastName}
-                sx={{ gridColumn: "span 2" }}
-              /> */}
               <TextField
                 fullWidth
                 variant="filled"
-                type="text"
-                label="price"
+                type="number"
+                label="Quantity"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.email}
-                name="email"
-                error={!!touched.email && !!errors.email}
-                helperText={touched.email && errors.email}
+                value={values.productQty}
+                name="productQty"
+                error={!!touched.productQty && !!errors.productQty}
+                helperText={touched.productQty && errors.productQty}
+                sx={{ gridColumn: "span 2" }}
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                type="float"
+                label="Price"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.productPrice}
+                name="productPrice"
+                error={!!touched.productPrice && !!errors.productPrice}
+                helperText={touched.productPrice && errors.productPrice}
                 sx={{ gridColumn: "span 4" }}
               />
               {/* <TextField
@@ -115,6 +153,40 @@ const Form = () => {
                 helperText={touched.address2 && errors.address2}
                 sx={{ gridColumn: "span 4" }}
               /> */}
+              <TextField
+              fullWidth
+              variant="filled"
+              type="text"
+              label="Description"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              value={values.description}
+              name="description"
+              error={touched.description && errors.description}
+              helperText={touched.description && errors.description}
+              sx={{ gridColumn: 'span 4' }}
+            />
+            <Box
+                display="flex"
+                justifyContent="start"
+                alignItems="center"
+                gridColumn="span 4"
+                sx={{ gap: '58px' }}
+              >
+            <InputLabel htmlFor="image" sx={{ gridColumn: 'span 4' }}>
+                Image
+            </InputLabel>
+            <input
+              type="file"
+  onChange={(e) => {
+    handleChange(e);
+    setFieldValue('image',e.target.files[0]);
+  }}
+  id="Image"
+  name="image"
+  sx={{ gridColumn: "span 4" }}
+/>
+            </Box>
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
@@ -128,27 +200,20 @@ const Form = () => {
   );
 };
 
-const phoneRegExp =
-  /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 
 const checkoutSchema = yup.object().shape({
-  productName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
-  contact: yup
-    .string()
-    .matches(phoneRegExp, "Phone number is not valid")
-    .required("required"),
-  address1: yup.string().required("required"),
-  address2: yup.string().required("required"),
+  productName: yup.string().required('Product name is required'),
+  productPrice: yup.number().required('Price is required').positive('Price must be a positive number'),
+  productQty: yup.number().required('Quantity is required').integer('Quantity must be an integer'),
+  description: yup.string().required('Description is required'),
+  image: yup.mixed().required('Image is required'),
 });
 const initialValues = {
-  productName: "",
-  lastName: "",
-  email: "",
-  contact: "",
-  address1: "",
-  address2: "",
+  name: '',
+  qty: 0,
+  price:0,
+  description:'',
+  image:null,
 };
 
 export default Form;

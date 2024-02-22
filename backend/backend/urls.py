@@ -20,11 +20,17 @@ from django.views.generic import TemplateView
 from employee.views import employee,employee_detail
 from customer.views import customer,customer_detail
 from supplier.views import supplier,supplier_detail
+from products.views import product_list
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("employee/", employee, name="employee"),
     path("customer/", customer, name="customer"),
     path("supplier/",supplier,name='supplier'),
+    path("product/", product_list, name="product"),
     re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
 ]
+
+urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
