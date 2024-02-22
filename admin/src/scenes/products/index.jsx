@@ -40,44 +40,44 @@ const Products = () => {
     //   headerName: "Email",
     //   flex: 1,
     // },
-    {
-      field: "accessLevel",
-      headerName: "Update",
-      flex: 1,
-      renderCell: ({ row }) => {
-        return (
-          <Box display="flex" justifyContent="space-between">
-            <Button
-              variant="contained"
-              color="primary" 
-              onClick={() => handleAdd(row.id)}
-              sx={{ marginRight: '20px' }} 
-              style={{ backgroundColor: '#e3f2fd' , color:'black'}} 
-            >
-              Add
-            </Button>
-            <Button
-              variant="contained"
-              color="error" // Use error color for "Remove" button
-              onClick={() => handleRemove(row.id)}
-            >
-              Remove
-            </Button>
-          </Box>
-        );
-      },
-    },
+    // {
+    //   field: "accessLevel",
+    //   headerName: "Update",
+    //   flex: 1,
+    //   renderCell: ({ row }) => {
+    //     return (
+    //       <Box display="flex" justifyContent="space-between">
+    //         <Button
+    //           variant="contained"
+    //           color="primary" 
+    //           onClick={() => handleAdd(row.id)}
+    //           sx={{ marginRight: '20px' }} 
+    //           style={{ backgroundColor: '#e3f2fd' , color:'black'}} 
+    //         >
+    //           Add
+    //         </Button>
+    //         <Button
+    //           variant="contained"
+    //           color="error" // Use error color for "Remove" button
+    //           onClick={() => handleRemove(row.id)}
+    //         >
+    //           Remove
+    //         </Button>
+    //       </Box>
+    //     );
+    //   },
+    // },
   ];
 
-  const handleAdd = (id) => {
-    // Handle add functionality
-    console.log(`Add product with id ${id}`);
-  };
+  // const handleAdd = (id) => {
+  //   // Handle add functionality
+  //   console.log(`Add product with id ${id}`);
+  // };
 
-  const handleRemove = (id) => {
-    // Handle remove functionality
-    console.log(`Remove product with id ${id}`);
-  };
+  // const handleRemove = (id) => {
+  //   // Handle remove functionality
+  //   console.log(`Remove product with id ${id}`);
+  // };
 
   return (
     <Box m="20px">
@@ -129,7 +129,7 @@ const Products = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataProduct} columns={columns} />
+        <DataGrid checkboxSelection rows={productData} columns={columns} />
       </Box>
     </Box>
   );
