@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path,re_path
 from employee.views import employee,employee_detail
 from customer.views import customer,customer_detail
+from supplier.views import supplier
 from django.views.generic import TemplateView
 from products.views import product_list
 from django.conf import settings
@@ -31,6 +32,7 @@ urlpatterns = [
     path("customer/", customer, name="employee"),
     path("customer/<int:pk>/", customer_detail, name="customerdetail"),
     path("product/", product_list, name="product"),
+    path("supplier/",supplier,name="supplier"),
     # path("getproduct/", get_product, name="product"),
     # path("get_product_image/<int:product_id>/",get_product_image,name="image"),
     # path("getimage/", get_product, name="product"),
