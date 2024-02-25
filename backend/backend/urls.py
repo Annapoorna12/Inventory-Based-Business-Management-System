@@ -16,21 +16,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,re_path
-from django.views.generic import TemplateView
 from employee.views import employee,employee_detail
 from customer.views import customer,customer_detail
-from supplier.views import supplier,supplier_detail
+from django.views.generic import TemplateView
 from products.views import product_list
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("employee/", employee, name="employee"),
-    path("customer/", customer, name="customer"),
-    path("supplier/",supplier,name='supplier'),
+    path("employee/<int:pk>/", employee_detail, name="employeedetail"),
+    path("customer/", customer, name="employee"),
+    path("customer/<int:pk>/", customer_detail, name="customerdetail"),
     path("product/", product_list, name="product"),
+    # path("getproduct/", get_product, name="product"),
+    # path("get_product_image/<int:product_id>/",get_product_image,name="image"),
+    # path("getimage/", get_product, name="product"),
     re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
 ]
-
-urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
