@@ -26,6 +26,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   
+  
   return (
     <MenuItem
       active={selected === title}
@@ -47,8 +48,8 @@ const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
   const backgroundColor =
-    theme.palette.mode === 'light' ? colors.blueAccent[400] : colors.primary[400];
-  const textColor = theme.palette.mode === 'light' ? '#fff' : '#fff';
+    theme.palette.mode === 'light' ? colors.grey[800] : colors.primary[400];
+  const textColor = theme.palette.mode === 'light' ? '#0f0f0f' : '#fff';
     
   return (
     <Box
@@ -63,18 +64,18 @@ const Sidebar = () => {
           padding: "5px 35px 5px 20px !important",
         },
         "& .pro-inner-item:hover": {
-          color: "#e3ffff !important",
+          color: "#f27730 !important",
         },
         "& .pro-menu-item.active": {
-          color: "#bbfeff !important",
-          border: "1px  #5d76cb",
-          backgroundColor: "#5d76cb",
+          color: "#0f0f0f !important",
+          border: "1px  #f79752",
+          backgroundColor: "#f79752",
           width:"225px !important ",
           display:"flex",
           borderRadius:"20px"
         },
         "& .pro-menu-item.active:hover .pro-inner-item": {
-          color: "#d1feff !important",
+          color: "#0f0f0f !important",
         },
       }}
     >
