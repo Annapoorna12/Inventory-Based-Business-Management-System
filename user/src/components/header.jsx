@@ -17,8 +17,8 @@ function Header() {
     <> 
     <div className='homepage'>
     <nav className='navbar'>
-    <img src={logo} alt="logo" style={{height: '60px',
-  width: '135px', marginLeft: '25px', marginTop: '20px'}} />
+    <img src={logo} alt="logo" style={{height: '150px',
+  width: '135px', marginLeft: '25px', marginTop: '0.5px'}} />
     <div className='menu'>
         <Link to='/'>Home</Link>
         <Link to=''>About </Link>
