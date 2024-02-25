@@ -139,7 +139,7 @@ const Form2 = () => {
               /> */}
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="secondary" variant="contained">
+              <Button type="submit" color="f79752" variant="contained">
                 Add New customer
               </Button>
             </Box>

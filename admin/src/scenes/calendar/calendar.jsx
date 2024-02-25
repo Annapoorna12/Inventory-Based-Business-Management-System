@@ -48,7 +48,8 @@ const Calendar = () => {
 
   return (
     <Box m="20px">
-      <Header title="Calendar" subtitle="Calendar Interactive Page" />
+      
+      <Header title="Calendar" subtitle={<span style={{ color: '#c76832' }}>Calendar Interactive Page</span>} />
 
       <Box display="flex" justifyContent="space-between">
         {/* CALENDAR SIDEBAR */}

@@ -98,15 +98,15 @@ const Contacts = () => {
         style={{ 
           padding: '10px 20px', 
           color: 'white', 
-          backgroundColor: '#535ac8',
-          borderRadius: '20px', // Adjust the value to control the curve
+          backgroundColor: '#f79752',
+          borderRadius: '20px', 
         }}
         onClick={() => navigate('/form2')}
       >
         Add New Customer
       </button>
     </Box>
-      <Box
+    <Box
         m="40px 0 0 0"
         height="75vh"
         sx={{
@@ -120,7 +120,7 @@ const Contacts = () => {
             color: colors.greenAccent[300],
           },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
+            backgroundColor: '#f79752',
             borderBottom: "none",
           },
           "& .MuiDataGrid-virtualScroller": {
@@ -128,7 +128,7 @@ const Contacts = () => {
           },
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",
-            backgroundColor: colors.blueAccent[700],
+            backgroundColor: '#f79752',
           },
           "& .MuiCheckbox-root": {
             color: `${colors.greenAccent[200]} !important`,
@@ -139,7 +139,7 @@ const Contacts = () => {
         }}
       >
         <DataGrid
-          rows={customerData}
+          rows={mockDataContacts}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />

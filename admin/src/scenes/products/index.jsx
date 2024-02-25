@@ -115,14 +115,14 @@ const Products = () => {
   return (
     <Box m="20px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Products" subtitle="Product Details" />
+        <Header title="Products" subtitle={<span style={{ color: '#c76832' }}>Product Details</span>} />
         <Button 
           variant="contained" 
           color="primary" 
           style={{ 
             padding: '10px 20px', 
             color: 'white', 
-            backgroundColor: '#535ac8',
+            backgroundColor: '#f79752',
             borderRadius: '20px', // Adjust the value to control the curve
           }}
           onClick={() => navigate('/form')}
@@ -147,7 +147,7 @@ const Products = () => {
             fontSize:"12px",
           },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
+            backgroundColor: '#f79752',
             borderBottom: "none",
           },
           "& .MuiDataGrid-virtualScroller": {
@@ -155,14 +155,14 @@ const Products = () => {
           },
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",
-            backgroundColor: colors.blueAccent[700],
+            backgroundColor: '#f79752',
           },
           "& .MuiCheckbox-root": {
             color: `${colors.greenAccent[200]} !important`,
           },
         }}
       >
-        <DataGrid checkboxSelection rows={productData} columns={columns} />
+        <DataGrid checkboxSelection rows={mockDataProduct} columns={columns} />
       </Box>
     </Box>
   );

@@ -113,14 +113,14 @@ const Team = () => {
     <Box m="20px">
       {/* <Header title="EMPLOYEE" subtitle="Employee Details" /> */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-      <Header title="Employee" subtitle="Employee Details" />
+      <Header title="Employee" subtitle={<span style={{ color: '#c76832'}}>Employee Details</span>}/>
       <button 
         variant="contained" 
         color="primary" 
         style={{ 
           padding: '10px 20px', 
           color: 'white', 
-          backgroundColor: '#535ac8',
+          backgroundColor: '#f79752',
           borderRadius: '20px', // Adjust the value to control the curve
         }}
         onClick={() => navigate('/form1')}
@@ -128,7 +128,7 @@ const Team = () => {
         Add New Employee
       </button>
     </Box>
-      <Box
+    <Box
         m="40px 0 0 0"
         height="75vh"
         sx={{
@@ -142,7 +142,7 @@ const Team = () => {
             color: colors.greenAccent[300],
           },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
+            backgroundColor: '#f79752',
             borderBottom: "none",
           },
           "& .MuiDataGrid-virtualScroller": {
@@ -150,14 +150,14 @@ const Team = () => {
           },
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",
-            backgroundColor: colors.blueAccent[700],
+            backgroundColor: '#f79752',
           },
           "& .MuiCheckbox-root": {
             color: `${colors.greenAccent[200]} !important`,
           },
         }}
       >
-        <DataGrid checkboxSelection rows={employeeData} columns={columns} />
+        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
       </Box>
     </Box>
   );

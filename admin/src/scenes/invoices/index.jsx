@@ -44,7 +44,7 @@ const Invoices = () => {
 
   return (
     <Box m="20px">
-      <Header title="INVOICES" subtitle="List of Invoice Balances" />
+      <Header title="INVOICES" subtitle={<span style={{ color: '#c76832' }}>List of Invoice Balances</span>} />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -59,7 +59,7 @@ const Invoices = () => {
             color: colors.greenAccent[300],
           },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
+            backgroundColor: '#f79752',
             borderBottom: "none",
           },
           "& .MuiDataGrid-virtualScroller": {
@@ -67,7 +67,7 @@ const Invoices = () => {
           },
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",
-            backgroundColor: colors.blueAccent[700],
+            backgroundColor: '#f79752',
           },
           "& .MuiCheckbox-root": {
             color: `${colors.greenAccent[200]} !important`,

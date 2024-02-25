@@ -90,9 +90,10 @@ const Supplier = () => {
     <Box m="20px">
       <Header
         title="Supplier"
-        subtitle="Supplier Details"
+        subtitle={<span style={{ color: '#c76832' }}>Supplier Details</span>}
+      
       />
-      <Box
+     <Box
         m="40px 0 0 0"
         height="75vh"
         sx={{
@@ -106,7 +107,7 @@ const Supplier = () => {
             color: colors.greenAccent[300],
           },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
+            backgroundColor: '#f79752',
             borderBottom: "none",
           },
           "& .MuiDataGrid-virtualScroller": {
@@ -114,7 +115,7 @@ const Supplier = () => {
           },
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",
-            backgroundColor: colors.blueAccent[700],
+            backgroundColor: '#f79752',
           },
           "& .MuiCheckbox-root": {
             color: `${colors.greenAccent[200]} !important`,
