@@ -9,7 +9,7 @@ import { FaShoppingBag } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-const NavBar = () => {
+const Nav = () => {
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
     const [show3, setShow3] = useState(false);
@@ -91,7 +91,19 @@ const NavBar = () => {
                             </ul>}
 
                         </li>
-                        
+                        <li class="dropdown nav-link nav-link-fade-up" >
+                         <Link to="/signup">
+                        SIGN UP
+                    </Link> 
+                    </li>
+                        <li class="dropdown nav-link nav-link-fade-up" >
+                        <Link to="/login">
+                        LOGIN
+                    </Link> 
+
+                        </li>
+
+
 
                         {/* <li class="dropdown nav-link nav-link-fade-up" onMouseOver={showHandler3} >
                             SHOP RANGE
@@ -106,9 +118,10 @@ const NavBar = () => {
 
                     </ul>
 
-                    <Link to="/cart">
+                    {/* <Link to="/cart">
                         <FaShoppingBag className=' text-2xl text-right ml-10 relative left-24' />
-                    </Link>
+                    </Link> */}
+
                 </nav >
             </header >
 
@@ -118,7 +131,7 @@ const NavBar = () => {
     )
 }
 
-export default NavBar
+export default Nav
 
 
 
@@ -182,16 +195,14 @@ export default NavBar
             <p>Hover over the "Dropdown" link to see the dropdown menu.</p>
 
 
-
-
-
-
-
-
-
-
-
-
-
 */
+
+
+
+
+
+
+
+
+
 

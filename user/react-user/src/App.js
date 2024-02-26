@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Login from './components/login/login'
 import Signup from './components/signup/signup';
 import NavBar from './components/NavBar';
+import Nav from './components/Nav';
 import Body from './components/Body';
 import SimpleSlider from './components/HeroCarousel';
 import HeroSection from './components/HeroSection';
@@ -33,9 +34,11 @@ function App() {
       <BrowserRouter>
 
         <Routes >
-          {/* <Route path='/' element={<Header />}></Route>
+        <Route path='/' exact element={<>   <Nav/> <MobileNav />  <SimpleSlider />  <HeroSection />  <BsText />  {<Products />}<FollowONIG /> <SPFooter />  </>} />
+        <Route path='/dash' exact element={<>   <NavBar /> <MobileNav />  <SimpleSlider />  <HeroSection />  <BsText />  {<Products />}<FollowONIG /> <SPFooter />  </>} />
+         
           <Route path='/login' element={<Login />}></Route>
-          <Route path='/signup' element={<Signup />}></Route> */}
+          <Route path='/signup' element={<Signup />}></Route> 
           <Route path='/' exact element={<>   <NavBar /> <MobileNav />  <SimpleSlider />  <HeroSection />  <BsText />  {<Products />}<FollowONIG /> <SPFooter />  </>} />
           <Route path='/:id' exact element={<> <NavBar /> <MobileNav />  <SinglePage /> </>} />
           <Route path='/journal/april' element={<> <NavBar /> <MobileNav />  <JournalPage /> </>} />
