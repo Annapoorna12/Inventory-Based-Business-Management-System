@@ -26,6 +26,7 @@ const Form1 = () => {
         const newEmployee=response.data;
         setEmployeeData([employeeData,newEmployee]);
         console.log(response.data)
+        alert("Employee added successfully!");
       }).catch((error) => {
         if (error.response) {
           console.log(error.response);

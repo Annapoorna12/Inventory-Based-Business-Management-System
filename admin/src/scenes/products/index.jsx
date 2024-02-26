@@ -162,7 +162,7 @@ const Products = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataProduct} columns={columns} />
+        <DataGrid checkboxSelection rows={productData} columns={columns} />
       </Box>
     </Box>
   );

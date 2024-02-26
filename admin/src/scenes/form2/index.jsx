@@ -25,6 +25,7 @@ const Form2 = () => {
       const newCustomer=response.data;
       setCustomerData([customerData,newCustomer]);
       console.log(response.data)
+      alert("Customer added successfully!");
     }).catch((error) => {
       if (error.response) {
         console.log(error.response);

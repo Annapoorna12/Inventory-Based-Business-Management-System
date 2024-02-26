@@ -40,6 +40,7 @@ const Form = () => {
       const newProduct=response.data;
       setProductData([productData,newProduct]);
       console.log(response.data)
+      alert("Product added successfully!");
     }).catch((error) => {
       if (error.response) {
         console.log(error.response);
