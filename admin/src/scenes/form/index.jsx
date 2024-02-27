@@ -11,14 +11,6 @@ const Form = () => {
   
   const [productData, setProductData] = useState([]);
 
-
-  // const handleFileChange = (e) => {
-  //   setProductData((prevData) => ({
-  //     ...prevData,
-  //     image: e.target.files[0],
-  //   }));
-  // };
-
   const handleFormSubmit = (values) => {
     console.log(values);
     const formData = new FormData();
@@ -26,9 +18,8 @@ const Form = () => {
     formData.append('qty', values.productQty);
     formData.append('price', values.productPrice);
     formData.append('description', values.description);
-    // if(values.image){
     formData.append('image', values.image);
-    // }
+    
     axios({
       method:"POST",
       url:"/product/",
@@ -38,7 +29,7 @@ const Form = () => {
       },
     }).then((response)=>{
       const newProduct=response.data;
-      setProductData([productData,newProduct]);
+      setProductData([...productData, newProduct]); // Corrected array concatenation
       console.log(response.data)
       alert("Product added successfully!");
     }).catch((error) => {
@@ -47,7 +38,6 @@ const Form = () => {
       }
     })
   };
-
 
   return (
     <Box m="20px">
@@ -115,82 +105,43 @@ const Form = () => {
                 helperText={touched.productPrice && errors.productPrice}
                 sx={{ gridColumn: "span 4" }}
               />
-              {/* <TextField
+              <TextField
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Contact Number"
+                label="Description"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.contact}
-                name="contact"
-                error={!!touched.contact && !!errors.contact}
-                helperText={touched.contact && errors.contact}
+                value={values.description}
+                name="description"
+                error={touched.description && errors.description}
+                helperText={touched.description && errors.description}
                 sx={{ gridColumn: "span 4" }}
               />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Address 1"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address1}
-                name="address1"
-                error={!!touched.address1 && !!errors.address1}
-                helperText={touched.address1 && errors.address1}
-                sx={{ gridColumn: "span 4" }}
-              />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Address 2"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address2}
-                name="address2"
-                error={!!touched.address2 && !!errors.address2}
-                helperText={touched.address2 && errors.address2}
-                sx={{ gridColumn: "span 4" }}
-              /> */}
-              <TextField
-              fullWidth
-              variant="filled"
-              type="text"
-              label="Description"
-              onBlur={handleBlur}
-              onChange={handleChange}
-              value={values.description}
-              name="description"
-              error={touched.description && errors.description}
-              helperText={touched.description && errors.description}
-              sx={{ gridColumn: 'span 4' }}
-            />
-            <Box
+              <Box
                 display="flex"
                 justifyContent="start"
                 alignItems="center"
                 gridColumn="span 4"
                 sx={{ gap: '58px' }}
               >
-            <InputLabel htmlFor="image" sx={{ gridColumn: 'span 4' }}>
-                Image
-            </InputLabel>
-            <input
-              type="file"
-  onChange={(e) => {
-    handleChange(e);
-    setFieldValue('image',e.target.files[0]);
-  }}
-  id="Image"
-  name="image"
-  sx={{ gridColumn: "span 4" }}
-/>
-            </Box>
+                <InputLabel htmlFor="image" sx={{ gridColumn: 'span 4' }}>
+                  Image
+                </InputLabel>
+                <input
+                  type="file"
+                  onChange={(e) => {
+                    handleChange(e);
+                    setFieldValue('image',e.target.files[0]);
+                  }}
+                  id="Image"
+                  name="image"
+                  sx={{ gridColumn: "span 4" }}
+                />
+              </Box>
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="#f79752" variant="contained">
+              <Button type="submit" color="primary" variant="contained">
                 Add New Product
               </Button>
             </Box>

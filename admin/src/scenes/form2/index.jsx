@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, useTheme } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -7,7 +7,8 @@ import { useState } from 'react';
 import axios from 'axios';
 
 const Form2 = () => {
-  const isNonMobile = useMediaQuery("(min-width:600px)");
+  const theme = useTheme(); // Use the useTheme hook to access the current theme
+  const isNonMobile = useMediaQuery(theme.breakpoints.up("sm")); // Use theme breakpoints
 
   const [customerData, setCustomerData] = useState([]);
 
@@ -72,32 +73,6 @@ const Form2 = () => {
                 helperText={touched.firstName && errors.firstName}
                 sx={{ gridColumn: "span 2" }}
               />
-              {/* <TextField
-                fullWidth
-                variant="filled"
-                type="number"
-                label="Age"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.lastName}
-                name="age"
-                error={!!touched.age && !!errors.age}
-                // helperText={touched.lastName && errors.lastName}
-                sx={{ gridColumn: "span 2" }}
-              /> */}
-              {/* <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Email"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.email}
-                name="email"
-                error={!!touched.email && !!errors.email}
-                helperText={touched.email && errors.email}
-                sx={{ gridColumn: "span 4" }}
-              /> */}
               <TextField
                 fullWidth
                 variant="filled"
@@ -124,23 +99,9 @@ const Form2 = () => {
                 helperText={touched.contact && errors.contact}
                 sx={{ gridColumn: "span 4" }}
               />
-          
-              {/* <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Designation"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.designation}
-                name="designation"
-                error={!!touched.designation && !!errors.designation}
-                helperText={touched.designation && errors.designation}
-                sx={{ gridColumn: "span 4" }}
-              /> */}
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="f79752" variant="contained">
+              <Button type="submit" color="primary" variant="contained">
                 Add New customer
               </Button>
             </Box>
@@ -156,7 +117,6 @@ const phoneRegExp =
 
 const checkoutSchema = yup.object().shape({
   firstName: yup.string().required("required"),
-//   lastName: yup.string().required("required"),
   email: yup.string().email("invalid email").required("required"),
   contact: yup
     .string()
@@ -167,8 +127,7 @@ const checkoutSchema = yup.object().shape({
 });
 const initialValues = {
   firstName: "",
-//   lastName: "",
- age: 0,
+  age: 0,
   email: "",
   contact: "",
   address1: "",
