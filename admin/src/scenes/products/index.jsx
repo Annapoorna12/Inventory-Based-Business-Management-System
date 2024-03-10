@@ -18,6 +18,7 @@ const Products = () => {
     { field: "name", headerName: "Product Name", flex: 1, cellClassName: "name-column--cell" },
     { field: "price", headerName: "Price", type: "number", headerAlign: "left", align: "left" },
     { field: "qty", headerName: "Quantity", flex: 1 },
+    { field: "type", headerName: "Type", flex: 1 },
     { field: "description", headerName: "Description", flex: 1 },
     { field: "img", headerName: "Image", flex: 1, renderCell: (params) => <ProductImage imageUrl={`${params.value}`} altText="Product Image" /> }
   ];

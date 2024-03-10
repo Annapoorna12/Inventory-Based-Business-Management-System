@@ -7,7 +7,7 @@ class Products(models.Model):
     img=models.ImageField(upload_to='product/',blank=True,null=True)
     qty=models.PositiveIntegerField()
     price=models.FloatField()
-    type=models.CharField(max_length=255)
+    type=models.CharField(max_length=255,default="product")
     description=models.CharField(max_length=1500)
 
     def upload_to(instance, filename):
