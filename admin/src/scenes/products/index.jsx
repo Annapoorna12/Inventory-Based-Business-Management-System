@@ -1,142 +1,72 @@
-import { Box, Typography, useTheme } from "@mui/material";
+// Products.js
+import React, { useState, useEffect } from 'react';
+import { Box, Button, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataProduct } from "../../data/mockData"; // Importing mockDataProduct
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
+import axios from "axios";
 import Header from "../../components/Header";
 import Form from "../form";
+import ProductImage from './productimage';
 import { useNavigate } from 'react-router-dom';
-import {useState, useEffect} from "react"
-import axios from "axios";
-import Button from '@mui/material/Button'; // Import Button component from MUI
 
 const Products = () => {
-  const theme = useTheme(); // Access theme
+  const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const navigate = useNavigate();
 
   const columns = [
     { field: "id", headerName: "Product Id" },
-    {
-      field: "name",
-      headerName: "Product Name",
-      flex: 1,
-      cellClassName: "name-column--cell",
-    },
-
-    {
-      field: "type",
-      headerName: "Category",
-      flex: 1,
-    },
-    
-    {
-      field: "price",
-      headerName: "Rate",
-      type: "number",
-      headerAlign: "left",
-      align: "left",
-    },
-    {
-      field: "qty",
-      headerName: "Quantity",
-      flex: 1,
-    },
-    // {
-    //   field: "email",
-    //   headerName: "Email",
-    //   flex: 1,
-    // },
-    // {
-    //   field: "accessLevel",
-    //   headerName: "Update",
-    //   flex: 1,
-    //   renderCell: ({ row }) => {
-    //     return (
-    //       <Box display="flex" justifyContent="space-between">
-    //         <Button
-    //           variant="contained"
-    //           color="primary" 
-    //           onClick={() => handleAdd(row.id)}
-    //           sx={{ marginRight: '20px' }} 
-    //           style={{ backgroundColor: '#e3f2fd' , color:'black'}} 
-    //         >
-    //           Add
-    //         </Button>
-    //         <Button
-    //           variant="contained"
-    //           color="error" // Use error color for "Remove" button
-    //           onClick={() => handleRemove(row.id)}
-    //         >
-    //           Remove
-    //         </Button>
-    //       </Box>
-    //     );
-    //   },
-    // },
+    { field: "name", headerName: "Product Name", flex: 1, cellClassName: "name-column--cell" },
+    { field: "price", headerName: "Price", type: "number", headerAlign: "left", align: "left" },
+    { field: "qty", headerName: "Quantity", flex: 1 },
+    { field: "type", headerName: "Type", flex: 1 },
+    { field: "description", headerName: "Description", flex: 1 },
+    { field: "img", headerName: "Image", flex: 1, renderCell: (params) => <ProductImage imageUrl={`${params.value}`} altText="Product Image" /> }
   ];
-
-  // const handleAdd = (id) => {
-  //   // Handle add functionality
-  //   console.log(`Add product with id ${id}`);
-  // };
-
-  // const handleRemove = (id) => {
-  //   // Handle remove functionality
-  //   console.log(`Remove product with id ${id}`);
-  // };
+  const navigate = useNavigate();
   const [productData, setProductData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      // try {
-      //   // Make an Axios GET request to fetch employee data from the backend
-      //   const response = await axios.get('http://127.0.0.1:8000/employee/');
-      //   // Assuming your backend returns an array of employee data
-      //   setEmployeeData(response.data);
-      // } catch (error) {
-      //   console.error('Error fetching employee data:', error);
-      // }
-      axios({
-        method: "GET",
-        url:"/product/",
-      }).then((response)=>{
-        const data = response.data
-        setProductData(data)
-
-      })
-  .catch((error) => {
-        if (error.response) {
-          console.log(error.response);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-          }
-      })
+      try {
+        const response = await axios.get("/product/");
+        setProductData(response.data);
+      } catch (error) {
+        console.error('Error fetching product data:', error);
+      }
     };
 
-    // Call the fetchData function when the component mounts
     fetchData();
   }, []);
+
   return (
     <Box m="20px">
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Products" subtitle={<span style={{ color: '#c76832' }}>Product Details</span>} />
+        <Header title="Products" subtitle="Product Details" />
         <Button 
           variant="contained" 
           color="primary" 
           style={{ 
             padding: '10px 20px', 
             color: 'white', 
-            backgroundColor: '#f79752',
-            borderRadius: '20px', // Adjust the value to control the curve
+            backgroundColor: '#535ac8',
+            borderRadius: '20px',
           }}
           onClick={() => navigate('/form')}
         >
           Add New Product
         </Button>
-
+      </Box>
+      <Box display="flex" flexWrap="wrap" justifyContent="space-evenly" mt={2}>
+        {/* {productData.map((product, index) => (
+          <div key={index}>
+            <ProductImage imageUrl={`${product.img}`} altText="Product Image" />
+          </div>
+        ))} */}
+        {Array.isArray(productData) && productData.map((product, index) => (
+  <div key={index}>
+    <ProductImage imageUrl={`${product.img}`} altText="Product Image" />
+  </div>
+))}
 
       </Box>
       <Box
@@ -151,10 +81,10 @@ const Products = () => {
           },
           "& .name-column--cell": {
             color: colors.greenAccent[400],
-            fontSize:"12px",
+            fontSize: "12px",
           },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: '#f79752',
+            backgroundColor: colors.blueAccent[700],
             borderBottom: "none",
           },
           "& .MuiDataGrid-virtualScroller": {
@@ -162,14 +92,14 @@ const Products = () => {
           },
           "& .MuiDataGrid-footerContainer": {
             borderTop: "none",
-            backgroundColor: '#f79752',
+            backgroundColor: colors.blueAccent[700],
           },
           "& .MuiCheckbox-root": {
             color: `${colors.greenAccent[200]} !important`,
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataProduct} columns={columns} />
+        <DataGrid checkboxSelection rows={productData} columns={columns} />
       </Box>
     </Box>
   );

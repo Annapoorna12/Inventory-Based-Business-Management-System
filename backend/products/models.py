@@ -8,6 +8,7 @@ class Products(models.Model):
     type=models.CharField(max_length=255)
     qty=models.PositiveIntegerField()
     price=models.FloatField()
+    type=models.CharField(max_length=255,default="product")
     description=models.CharField(max_length=1500)
 
     def upload_to(instance, filename):
@@ -16,3 +17,4 @@ class Products(models.Model):
 
     def __str__(self):
         return self.name
+    

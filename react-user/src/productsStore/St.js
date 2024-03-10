@@ -8,7 +8,7 @@ export const st = [
         name: "Red Bricks: 6*8*12 inch",
         price: 9,
         type: "brick",
-        primaryImage: "https://mahaluxmibricks.com/wp-content/uploads/2023/06/zirakpur.jpg",
+        primaryImage: "://mahaluxmibricks.com/wp-content/uhttpsploads/2023/06/zirakpur.jpg",
         hoverImg: "https://mahaluxmibricks.com/wp-content/uploads/2023/06/zirakpur.jpg",
          descr: "Our lightweight Leave-In Conditioner hydrates, gently detangles and tames frizz leaving hair smooth and manageable.            "
 
