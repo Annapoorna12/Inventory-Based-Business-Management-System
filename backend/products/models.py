@@ -5,6 +5,7 @@ from django.db import models
 class Products(models.Model):
     name=models.CharField(max_length=255)
     img=models.ImageField(upload_to='product/',blank=True,null=True)
+    type=models.CharField(max_length=255)
     qty=models.PositiveIntegerField()
     price=models.FloatField()
     description=models.CharField(max_length=1500)
