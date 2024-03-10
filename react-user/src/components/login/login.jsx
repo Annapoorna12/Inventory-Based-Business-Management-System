@@ -33,7 +33,7 @@ function Login() {
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
             <div style={{ backgroundImage: `url(${car22})`, backgroundSize: 'cover', flex: '0 0 100%', padding: '2rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <div className='card' style={{ width: '400px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0,0,0,0.2)', backgroundColor: 'white', padding: '2rem' }}>
+                <div className='card' style={{ width: '400px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0,0,0,0.2)', background:'gray', backdropFilter:'blur(80px)', padding: '2rem' }}>
                     <h2 style={{ marginBottom: '2rem', textAlign: 'center', fontSize:'30px', fontFamily:'sans-serif' }}>Sign-In</h2>
                     <form onSubmit={handleSubmit}>
                         <div style={{ marginBottom: '1rem' }}>
