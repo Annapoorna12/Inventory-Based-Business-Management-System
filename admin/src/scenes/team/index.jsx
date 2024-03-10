@@ -22,29 +22,29 @@ const Team = () => {
       flex: 1,
       cellClassName: "name-column--cell",
     },
-    // {
-    //   field: "age",
-    //   headerName: "Age",
-    //   type: "number",
-    //   headerAlign: "left",
-    //   align: "left",
-    // },
     {
-      field: "address",
-      headerName: "Address",
-      flex: 1,
+      field: "age",
+      headerName: "Age",
+      type: "number",
+      headerAlign: "left",
+      align: "left",
     },
+    // {
+    //   field: "address",
+    //   headerName: "Address",
+    //   flex: 1,
+    // },
     {
       field: "phone",
       headerName: "Phone Number",
       flex: 1,
     },
    
-    // {
-    //   field: "email",
-    //   headerName: "Email",
-    //   flex: 1,
-    // },
+    {
+      field: "email",
+      headerName: "Email",
+      flex: 1,
+    },
     // {
     //   field: "accessLevel",
     //   headerName: "Designation",
@@ -157,7 +157,7 @@ const Team = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={employeeData} columns={columns} />
+        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
       </Box>
     </Box>
   );

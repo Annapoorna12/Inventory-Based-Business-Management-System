@@ -25,9 +25,16 @@ const Products = () => {
       flex: 1,
       cellClassName: "name-column--cell",
     },
+
+    {
+      field: "type",
+      headerName: "Category",
+      flex: 1,
+    },
+    
     {
       field: "price",
-      headerName: "Price per Kg",
+      headerName: "Rate",
       type: "number",
       headerAlign: "left",
       align: "left",
@@ -162,7 +169,7 @@ const Products = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={productData} columns={columns} />
+        <DataGrid checkboxSelection rows={mockDataProduct} columns={columns} />
       </Box>
     </Box>
   );

@@ -15,6 +15,7 @@ const Form = () => {
     console.log(values);
     const formData = new FormData();
     formData.append('name', values.productName);
+    formData.append('type', values.productType)
     formData.append('qty', values.productQty);
     formData.append('price', values.productPrice);
     formData.append('description', values.description);
@@ -79,6 +80,20 @@ const Form = () => {
                 helperText={touched.productName && errors.productName}
                 sx={{ gridColumn: "span 2" }}
               />
+               <TextField
+                fullWidth
+                variant="filled"
+                type="text"
+                label="Product Type"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                value={values.productType}
+                name="productType"
+                error={!!touched.productType && !!errors.productType}
+                helperText={touched.productType && errors.productType}
+                sx={{ gridColumn: "span 2" }}
+              />
+              
               <TextField
                 fullWidth
                 variant="filled"
@@ -155,6 +170,7 @@ const Form = () => {
 
 const checkoutSchema = yup.object().shape({
   productName: yup.string().required('Product name is required'),
+  productType: yup.string().required('Product type is required'),
   productPrice: yup.number().required('Price is required').positive('Price must be a positive number'),
   productQty: yup.number().required('Quantity is required').integer('Quantity must be an integer'),
   description: yup.string().required('Description is required'),
@@ -162,6 +178,7 @@ const checkoutSchema = yup.object().shape({
 });
 const initialValues = {
   name: '',
+  type:'',
   qty: 0,
   price:0,
   description:'',

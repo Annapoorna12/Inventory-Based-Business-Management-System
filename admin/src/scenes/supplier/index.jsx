@@ -126,7 +126,7 @@ const Supplier = () => {
         }}
       >
         <DataGrid
-          rows={supplierData}
+          rows={mockDataContacts}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />
